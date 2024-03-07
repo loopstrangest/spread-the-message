@@ -249,7 +249,7 @@ const Home = () => {
                 },
               }}
               value={textColor}
-              onChange={(color) => setTextColor(color)}
+              onChange={(color) => setTextColor(color.toString())}
               inputProps={{ style: { color: "#FFFFFF" } }}
             />
           )}
@@ -266,7 +266,7 @@ const Home = () => {
                   },
                 }}
                 value={backgroundColor}
-                onChange={(color) => setBackgroundColor(color)}
+                onChange={(color) => setBackgroundColor(color.toString())}
                 inputProps={{ style: { color: "#FFFFFF" } }}
               />
               <StyledButton
@@ -299,7 +299,7 @@ const Home = () => {
                   },
                 }}
                 value={backgroundColor2}
-                onChange={(color) => setBackgroundColor2(color)}
+                onChange={(color) => setBackgroundColor2(color.toString())}
                 inputProps={{ style: { color: "#FFFFFF" } }}
               />
             </Box>

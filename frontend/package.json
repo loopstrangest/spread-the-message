@@ -21,6 +21,7 @@
     "gifshot": "^0.4.5",
     "html-to-image": "^1.11.11",
     "jquery": "^3.7.1",
+    "mui-color-input": "^2.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.0.1",

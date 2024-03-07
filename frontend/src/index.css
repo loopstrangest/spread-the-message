@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Abril";
+  src: url("/fonts/Abril.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Bebas";
+  src: url("/fonts/Bebas.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Caveat";
+  src: url("/fonts/Caveat.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Dancing";
+  src: url("/fonts/Dancing.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Marker";
+  src: url("/fonts/Marker.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Playfair";
+  src: url("/fonts/Playfair.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Protest";
+  src: url("/fonts/Protest.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("/fonts/Roboto.ttf") format("truetype");
+}

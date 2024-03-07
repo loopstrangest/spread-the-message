@@ -1,0 +1,51 @@
+Problem Debugging Steps
+
+GOAL:
+I want to conditionally write words + ip addresses, or increment a count to the redis upstash db
+whenever the user clicks the "SHOW GIF" button to view and download the GIF.
+I am testing this with the input words "do", "something", and "different".
+
+PROBLEM:
+When I click the button, I get errors in frontend and backend
+Example errors:
+    FE:
+        POST http://localhost:4000/words
+        [HTTP/1.1 500 Internal Server Error 170ms]"
+    BE:
+        Router post error: Unauthorized, command was: ["sismember","72.182.64.54","do"]
+
+These errors also occur with words I'd never attempted to add.
+So I can focus on the 500 error or the unauthorized error, but I am not sure which is the root cause.
+Perhaps 500 causes Unauthorized or vice-versa.
+I'll start with Unauthorized.
+Small distraction with some styling inmprovements.
+Checking the upstash docs.
+Added code to get a key, seeing this error: u [UpstashError]: Unauthorized, command was: ["get","key"]
+Asking the Upstash Documentation is cool. ✨
+So resolving this error seems fundamental, but I am stuck again.
+OKAY in the native CLI on the upstash db console, using GET key results in "nil".
+So there's no key?
+Oh, "key" refers to key value pairs in the db, but adding a value form the data browser didn't resolve the error.
+Attempting to add this db to RedisInsight
+Getting this error: Could not connect to ..., please check the connection details.
+I feel like I'm missing something obvious about the connection details. Like a syntax error.
+This is one of the frustrations with my debugging process.
+I follow the steps from the docs and the AI suggestions and the issue persists.
+Logging now based on the results of this: const setResult = await redisClient.set("test", "success");
+Getting a similar error: u [UpstashError]: Unauthorized, command was: ["set","test","success"]
+What else? Watch a youtube upstash tutorial.
+Sent a message to the upstash support team.
+Is it useful to switch to the frontend error?
+Doesn't seem like it since I don't need it to work with the db.
+Pausing for today (03.05.24) until I get a response from the upstash team.
+
+~8~8~8~8~
+
+Back at it (03.06.24)
+Problem: I cannot read the leaderboard data.
+There hasn't been anything written to leaderboard. Now there has!
+I need to understand redis hashes better.
+Okay I do understand redis hashes better and I know the problem.
+How to pass in a variable to be read as the hash key?
+FIGURED IT OUT IT WAS A SYNTAX THING.
+Vercel not set up to deploy backend.

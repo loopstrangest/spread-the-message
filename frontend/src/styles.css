@@ -1,0 +1,26 @@
+@keyframes fade-in-out {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.word-container {
+  transform: scale(
+    0.75
+  ); /* Adjust the scale factor based on the original and target sizes */
+  transform-origin: center center; /* Ensures the scaling is centered */
+  margin-bottom: -10%;
+  margin-top: -10%;
+}
+
+body {
+  background: black;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}

@@ -1,0 +1,18 @@
+Overview:
+Spread the Message is a web app that lets users create and share custom messages as gifs
+Users can create gifs with up to three words, apply visual effects, and copy and download them to share
+
+Actions:
+- Enter one word in each of the three input fields
+- Click the "Create" button to generate a gif
+- Click the "Copy" or "Download" buttons to copy or download the gif
+- Click "Font" and "Effect" and "Color" buttons to change the font, effect, and color of the gif
+
+Code features:
+- Whenever the user clicks "Copy" or "Download", the app checks each word in the input fields:
+    - If this IP address has never used this word before
+    - If this is a valid english word
+    - And if BOTH conditions are satisifed, the count of the word increases by one
+
+Popular words view:
+- This page shows a bar chart of the most popular words used in the app by all users, ordered by count of the word

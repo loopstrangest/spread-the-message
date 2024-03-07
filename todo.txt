@@ -1,0 +1,51 @@
+Major steps to release:
+Get set up with vercel
+Understand the process to deploy frontend and backend
+Understand the process to deploy through github + vercel to my website
+Find a word blacklist library and use it to filter for hash addition
+Clean up the codebase
+Add words to leaderboard on download
+Deploy the app
+
+Nice to have:
+Improve look of downloaded GIF
+Understand git deployment commands from the terminal
+
+Finished steps:
+Display leaderboard data in Chart.tsx
+Improve look of chart
+Improve look of app
+
+
+~*~*~*~*~
+
+text: #ff61c6ff
+bg1: #f4ff61ff
+bg2: #5cecffff
+
+text: #00f0ffff
+bg1: #fe4a49ff
+bg2: #ff00f5ff
+
+DONE:
+Format word data model to include the user's IP address.
+Include user's IP address in word post method.
+Restrict word post method when the word is already in the database from the same IP address.
+Restrict word post method when the word is not an english word.
+Find library to display word data as a horizontal bar chart (Victory).
+Implement the word chart in the /words route.
+Format the word chart to display the top 10 words in the database.
+Create WordInput component to display and change the GIF words.
+Create three word input fields in the WordInput component.
+Handle adding each of the three words to the database.
+Create WordGIF component.
+Improve logic and retrieval of localStorage words.
+Create a function to create and download a GIF with the WordInput component.
+Improve GIF edit option buttons display and hover effect.
+Add text effects.
+Update tab icon.
+Make displayed GIF always mobile-friendly, downloaded GIF always 400x400px.
+Save all GIF customization variables in the localStorage.
+
+ship done:
+set up a create react app (no vite) project

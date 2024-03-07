@@ -7,13 +7,6 @@ I am testing this with the input words "do", "something", and "different".
 
 PROBLEM:
 When I click the button, I get errors in frontend and backend
-Example errors:
-    FE:
-        POST http://localhost:4000/words
-        [HTTP/1.1 500 Internal Server Error 170ms]"
-    BE:
-        Router post error: Unauthorized, command was: ["sismember","72.182.64.54","do"]
-
 These errors also occur with words I'd never attempted to add.
 So I can focus on the 500 error or the unauthorized error, but I am not sure which is the root cause.
 Perhaps 500 causes Unauthorized or vice-versa.
@@ -49,3 +42,5 @@ Okay I do understand redis hashes better and I know the problem.
 How to pass in a variable to be read as the hash key?
 FIGURED IT OUT IT WAS A SYNTAX THING.
 Vercel not set up to deploy backend.
+I could deploy the backend to Heroku, and connect the two pieces.
+Promising yt tutorial https://www.youtube.com/watch?v=CNJkX9rYI8U

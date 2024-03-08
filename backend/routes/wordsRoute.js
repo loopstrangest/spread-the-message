@@ -1,5 +1,5 @@
 import express from "express";
-import englishWords from "../english-words.json";
+import englishWords from "../english-words.json" assert { type: "json" };
 import { redisClient } from "../redis.js";
 
 const router = express.Router();

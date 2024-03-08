@@ -1,5 +1,5 @@
 import express from "express";
-import englishWords from "an-array-of-english-words/index.json" assert { type: "json" };
+import englishWords from "an-array-of-english-words/index.json";
 import { redisClient } from "../redis.js";
 
 const router = express.Router();
@@ -27,11 +27,9 @@ router.post("/", async (request, response) => {
     // Verify if the word has already been submitted by this uuid
     const memberExists = await redisClient.sismember(uuid, lowercaseWord);
     if (memberExists) {
-      response
-        .status(200)
-        .send({
-          message: "This word has already been submitted by this user.",
-        });
+      response.status(200).send({
+        message: "This word has already been submitted by this user.",
+      });
       return;
     }
     // Add the word to the set for this uuid

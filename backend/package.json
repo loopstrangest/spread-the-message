@@ -6,8 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "postinstall": "npm install an-array-of-english-words"
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",

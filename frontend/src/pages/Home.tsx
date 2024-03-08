@@ -12,8 +12,7 @@ import { ANIMATION_DURATION_S } from "../constants";
 import { ZoomInMap, ZoomOutMap } from "@mui/icons-material";
 import { BACKEND_URL } from "../urls";
 import { v4 as uuidv4 } from "uuid";
-//import { Redis } from "@upstash/redis";
-//import englishWords from "an-array-of-english-words";
+
 type PickerVisibility =
   | "none"
   | "font"

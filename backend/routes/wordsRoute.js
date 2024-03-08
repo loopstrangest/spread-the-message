@@ -1,5 +1,5 @@
 import express from "express";
-import englishWords from "an-array-of-english-words/index.json";
+import englishWords from "an-array-of-english-words";
 import { redisClient } from "../redis.js";
 
 const router = express.Router();

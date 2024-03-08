@@ -29,6 +29,7 @@
     "redis": "^4.6.13",
     "redis-om": "^0.4.3",
     "textillate": "^0.4.1",
+    "uuid": "^9.0.1",
     "victory": "^36.9.1"
   },
   "devDependencies": {
@@ -36,6 +37,7 @@
     "@types/jquery": "^3.5.29",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
+    "@types/uuid": "^9.0.8",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.2.1",

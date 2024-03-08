@@ -1,23 +1,14 @@
 import express from "express";
-import axios from "axios";
 import englishWords from "an-array-of-english-words/index.json" assert { type: "json" };
 import { redisClient } from "../redis.js";
-
-(async () => {
-  try {
-    const data = await redisClient.get("key");
-  } catch (error) {
-    console.error("Upstash error", error);
-  }
-})();
 
 const router = express.Router();
 
 //Route for save
 router.post("/", async (request, response) => {
   try {
-    const { word, ipAddress } = request.body;
-    if (!word || !ipAddress) {
+    const { word, uuid } = request.body;
+    if (!word || !uuid) {
       response.status(400).send({ message: "Send all required fields" });
       return;
     }
@@ -26,20 +17,25 @@ router.post("/", async (request, response) => {
       return { [word]: 1 };
     }
     const hashEntry = wordToObject(lowercaseWord);
-    // Check if the word is a valid English word
+    // Validate if the word is a recognized English word
     if (!englishWords.includes(lowercaseWord)) {
-      response.status(400).send({ message: "Invalid English word" });
+      response
+        .status(200)
+        .send({ message: "Provided word is not a recognized English word." });
       return;
     }
-    // Check if the word exists in the set for this IP address
-    const memberExists = await redisClient.sismember(ipAddress, lowercaseWord);
+    // Verify if the word has already been submitted by this uuid
+    const memberExists = await redisClient.sismember(uuid, lowercaseWord);
     if (memberExists) {
-      return response
-        .status(409)
-        .send({ message: "Word already posted by this IP address" });
+      response
+        .status(200)
+        .send({
+          message: "This word has already been submitted by this user.",
+        });
+      return;
     }
-    // Add the word to the set for this IP address
-    await redisClient.sadd(ipAddress, lowercaseWord);
+    // Add the word to the set for this uuid
+    await redisClient.sadd(uuid, lowercaseWord);
     // Check if the word exists in the leaderboard
     const wordExists = await redisClient.hexists("leaderboard", lowercaseWord);
     if (wordExists) {
@@ -47,10 +43,9 @@ router.post("/", async (request, response) => {
     } else {
       // Set the word count in the leaderboard hash to 1
       await redisClient.hset("leaderboard", { [lowercaseWord]: 1 });
-      await redisClient.hincrby("leaderboard", lowercaseWord, 1);
     }
 
-    return response.status(201).send({ word, ipAddress });
+    return response.status(201).send({ word, uuid });
   } catch (error) {
     response.status(500).send({ message: error.message });
   }
@@ -76,7 +71,8 @@ router.get("/", async (request, response) => {
   }
 });
 
-//Route to get the user's IP address
+//Route to get the user's IP address (deprecated)
+/*
 router.get("/get-ip", (req, res) => {
   axios
     .get("https://api.ipify.org/?format=json")
@@ -88,6 +84,7 @@ router.get("/get-ip", (req, res) => {
       res.status(500).json({ message: "Error fetching IP" });
     });
 });
+*/
 
 //Route for getting the count of one specific word
 router.get("/:word", async (request, response) => {

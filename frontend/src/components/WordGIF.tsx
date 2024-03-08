@@ -20,6 +20,8 @@ interface WordGIFProps {
   backgroundColors: string[];
   gradientDirection: string;
   animation?: string;
+  isDownloading?: boolean;
+  setIsDownloading: (isDownloading: boolean) => void;
 }
 
 interface GifShotResult {
@@ -36,12 +38,13 @@ const WordGIF: React.FC<WordGIFProps> = ({
   textColor,
   backgroundColors,
   gradientDirection,
+  isDownloading,
+  setIsDownloading,
 }) => {
   const frameRate = 60;
   const captureLength = ANIMATION_DURATION_MS;
   const captureInterval = 1000 / frameRate;
   const [fontSize, setFontSize] = useState("36px");
-  const [isDownloading, setIsDownloading] = useState(false);
   const [downloadSuccess, setDownloadSuccess] = useState(false);
 
   useEffect(() => {

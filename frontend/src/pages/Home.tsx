@@ -11,6 +11,7 @@ import { MuiColorInput, MuiColorInputValue } from "mui-color-input";
 import { ANIMATION_DURATION_S } from "../constants";
 import { ZoomInMap, ZoomOutMap } from "@mui/icons-material";
 import { BACKEND_URL } from "../urls";
+import { v4 as uuidv4 } from "uuid";
 //import { Redis } from "@upstash/redis";
 //import englishWords from "an-array-of-english-words";
 type PickerVisibility =
@@ -24,6 +25,7 @@ const Home = () => {
   const [inputWords, setInputWords] = useState(["", "", ""]);
   const [showGIF, setShowGIF] = useState(true);
   const [activePicker, setActivePicker] = useState<PickerVisibility>("none");
+  const [isDownloading, setIsDownloading] = useState(false);
   const [font, setFont] = useState("Roboto");
   const [textColor, setTextColor] = useState<MuiColorInputValue>("#FFFFFF");
   const [backgroundColor, setBackgroundColor] = useState("#000000");
@@ -53,7 +55,14 @@ const Home = () => {
     },
   });
 
+  const generateToken = () => {
+    const token = localStorage.getItem("stm_userToken") || uuidv4();
+    localStorage.setItem("stm_userToken", token);
+    return token;
+  };
+
   useEffect(() => {
+    generateToken();
     const savedValues = JSON.parse(
       localStorage.getItem("stm_inputValues") || '["", "", ""]'
     );
@@ -101,18 +110,14 @@ const Home = () => {
   }, [selectedAnimation]);
 
   const handleAddWord = () => {
+    const uuid = localStorage.getItem("stm_userToken");
     inputWords.forEach((word) => {
       if (word !== "") {
         const lowercaseWord = word.toLowerCase();
-        axios
-          .get(`${BACKEND_URL}/words/get-ip`)
-
-          .then((res) => {
-            return axios.post(`${BACKEND_URL}/words`, {
-              word: lowercaseWord,
-              ipAddress: res.data.ip,
-            });
-          });
+        axios.post(`${BACKEND_URL}/words`, {
+          word: lowercaseWord,
+          uuid: uuid,
+        });
       }
     });
   };
@@ -135,6 +140,8 @@ const Home = () => {
             textColor={textColor.toString()}
             backgroundColors={[backgroundColor, backgroundColor2]}
             gradientDirection={gradientDirection}
+            isDownloading={isDownloading}
+            setIsDownloading={setIsDownloading}
           />
         ) : (
           <WordInput
@@ -341,6 +348,7 @@ const Home = () => {
           variant="contained"
           sx={{ outline: "1px solid white" }}
           onClick={() => navigate("/words")}
+          disabled={isDownloading}
         >
           <BarChartIcon />
         </Button>

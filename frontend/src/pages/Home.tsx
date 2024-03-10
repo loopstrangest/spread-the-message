@@ -19,7 +19,7 @@ type PickerVisibility =
   | "backgroundColor"
   | "effect";
 
-const BACKEND_URL = process.env.BACKEND_URL;
+const BACKEND_URL = import.meta.env.BACKEND_URL;
 
 const defaultWords = ["SPREAD", "THE", "MESSAGE"];
 

@@ -67,7 +67,7 @@ const WordGIF: React.FC<WordGIFProps> = ({
 
     const totalFrames = (duration / millisecondsPerSecond) * frameRate;
     for (let i = 0; i < totalFrames; i++) {
-      console.log("Capturing frame", i + 1, "of", totalFrames);
+      //console.log("Capturing frame", i + 1, "of", totalFrames);
       const frame = await toPng(element);
       frames.push(frame);
       await new Promise((resolve) => setTimeout(resolve, captureInterval));

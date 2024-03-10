@@ -10,7 +10,6 @@ import StyledButton from "../components/StyledButton";
 import { MuiColorInput, MuiColorInputValue } from "mui-color-input";
 import { ANIMATION_DURATION_S } from "../constants";
 import { ZoomInMap, ZoomOutMap } from "@mui/icons-material";
-import { BACKEND_URL } from "../urls";
 import { v4 as uuidv4 } from "uuid";
 
 type PickerVisibility =
@@ -20,8 +19,12 @@ type PickerVisibility =
   | "backgroundColor"
   | "effect";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
+const defaultWords = ["SPREAD", "THE", "MESSAGE"];
+
 const Home = () => {
-  const [inputWords, setInputWords] = useState(["", "", ""]);
+  const [inputWords, setInputWords] = useState(defaultWords);
   const [showGIF, setShowGIF] = useState(true);
   const [activePicker, setActivePicker] = useState<PickerVisibility>("none");
   const [isDownloading, setIsDownloading] = useState(false);
@@ -63,7 +66,7 @@ const Home = () => {
   useEffect(() => {
     generateToken();
     const savedValues = JSON.parse(
-      localStorage.getItem("stm_inputValues") || '["", "", ""]'
+      localStorage.getItem("stm_inputValues") || JSON.stringify(defaultWords)
     );
     setInputWords(savedValues);
     const savedFont = localStorage.getItem("stm_font");
@@ -141,6 +144,7 @@ const Home = () => {
             gradientDirection={gradientDirection}
             isDownloading={isDownloading}
             setIsDownloading={setIsDownloading}
+            handleAddWord={handleAddWord}
           />
         ) : (
           <WordInput
@@ -161,10 +165,7 @@ const Home = () => {
 
         <AddWordsButton
           showGIF={showGIF}
-          handleAddWord={() => {
-            if (!showGIF) {
-              handleAddWord();
-            }
+          handleToggle={() => {
             setShowGIF(!showGIF);
           }}
         />

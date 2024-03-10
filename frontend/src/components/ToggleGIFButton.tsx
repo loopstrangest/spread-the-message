@@ -3,16 +3,16 @@ import { Typography } from "@mui/material";
 import StyledButton from "./StyledButton";
 
 interface AddWordButtonProps {
-  handleAddWord: () => void;
+  handleToggle: () => void;
   showGIF: boolean;
 }
 
 const AddWordButton: React.FC<AddWordButtonProps> = ({
   showGIF,
-  handleAddWord,
+  handleToggle,
 }) => {
   return (
-    <StyledButton variant="contained" onClick={() => handleAddWord()}>
+    <StyledButton variant="contained" onClick={() => handleToggle()}>
       <Typography
         style={{
           paddingTop: "4px",

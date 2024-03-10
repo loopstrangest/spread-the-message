@@ -35,6 +35,7 @@
   "devDependencies": {
     "@types/gif.js": "^0.2.5",
     "@types/jquery": "^3.5.29",
+    "@types/node": "^20.11.25",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
     "@types/uuid": "^9.0.8",

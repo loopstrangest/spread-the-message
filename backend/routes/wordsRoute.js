@@ -1,8 +1,11 @@
 import express from "express";
 import englishWords from "../englishWords.js";
 import { redisClient } from "../redis.js";
+import Filter from "bad-words";
 
 const router = express.Router();
+
+const filter = new Filter();
 
 //Route for save
 router.post("/", async (request, response) => {
@@ -23,6 +26,9 @@ router.post("/", async (request, response) => {
         .status(200)
         .send({ message: "Provided word is not a recognized English word." });
       return;
+    }
+    if (filter.isprofane(lowercaseWord)) {
+      return response.status(400).send({ message: "Word is not allowed" });
     }
     // Verify if the word has already been submitted by this uuid
     const memberExists = await redisClient.sismember(uuid, lowercaseWord);

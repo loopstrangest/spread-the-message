@@ -22,6 +22,7 @@ interface WordGIFProps {
   animation?: string;
   isDownloading?: boolean;
   setIsDownloading: (isDownloading: boolean) => void;
+  handleAddWord: () => void;
 }
 
 interface GifShotResult {
@@ -40,6 +41,7 @@ const WordGIF: React.FC<WordGIFProps> = ({
   gradientDirection,
   isDownloading,
   setIsDownloading,
+  handleAddWord,
 }) => {
   const frameRate = 60;
   const captureLength = ANIMATION_DURATION_MS;
@@ -157,6 +159,7 @@ const WordGIF: React.FC<WordGIFProps> = ({
       <StyledButton
         variant="contained"
         onClick={async () => {
+          handleAddWord();
           const frames =
             (await captureFrames("gifContainer", captureLength, frameRate)) ||
             [];

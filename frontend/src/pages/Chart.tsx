@@ -5,12 +5,13 @@ import { Box, Button, Container, Typography } from "@mui/material"; // Import MU
 import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
-import { BACKEND_URL } from "../urls";
 
 interface WordCount {
   word: string;
   count: number;
 }
+
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
 const ShowWords = () => {
   const [wordCounts, setWordCounts] = useState<WordCount[]>([]);

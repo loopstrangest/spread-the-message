@@ -18,7 +18,7 @@ app.use(express.json());
 //Middleware for handling CORS POLICY
 app.use(
   cors({
-    origin: ["localhost:5173", "https://spreadthemessage.strangestloop.io"],
+    origin: "*",
     //origin: [FRONTEND_URL], // Specify the allowed origin
     methods: ["GET", "POST", "PUT", "DELETE"], // Specify the allowed methods
     allowedHeaders: ["Content-Type"], // Specify the allowed headers

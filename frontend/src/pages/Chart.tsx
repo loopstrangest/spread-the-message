@@ -11,7 +11,7 @@ interface WordCount {
   count: number;
 }
 
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+const BACKEND_URL = process.env.BACKEND_URL;
 
 const ShowWords = () => {
   const [wordCounts, setWordCounts] = useState<WordCount[]>([]);

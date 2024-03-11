@@ -31,7 +31,7 @@ router.post("/", async (request, response) => {
         .send({ message: "Provided word is not a recognized English word." });
       return;
     }
-    if (filter.isprofane(lowercaseWord)) {
+    if (filter.isProfane(lowercaseWord)) {
       console.log(`Word ${lowercaseWord} is profane.`);
       return response.status(400).send({ message: "Word is not allowed" });
     }

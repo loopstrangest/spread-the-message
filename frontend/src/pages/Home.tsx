@@ -116,7 +116,7 @@ const Home = () => {
     inputWords.forEach((word) => {
       if (word !== "") {
         const lowercaseWord = word.toLowerCase();
-        axios.post(`${BACKEND_URL}`, {
+        axios.post(`${BACKEND_URL}/words`, {
           word: lowercaseWord,
           uuid: uuid,
         });

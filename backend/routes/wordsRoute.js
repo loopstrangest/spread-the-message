@@ -12,26 +12,34 @@ router.post("/", async (request, response) => {
   try {
     const { word, uuid } = request.body;
     if (!word || !uuid) {
+      console.log("Missing fields: word or uuid is not provided");
       response.status(400).send({ message: "Send all required fields" });
       return;
     }
+    console.log(`Received word: ${word} and uuid: ${uuid}`);
     const lowercaseWord = word.toLowerCase();
     function wordToObject(word) {
       return { [word]: 1 };
     }
     const hashEntry = wordToObject(lowercaseWord);
+    console.log(`Converted word to lowercase: ${lowercaseWord}`);
     // Validate if the word is a recognized English word
     if (!englishWords.includes(lowercaseWord)) {
+      console.log(`Word ${lowercaseWord} is not a recognized English word.`);
       response
         .status(200)
         .send({ message: "Provided word is not a recognized English word." });
       return;
     }
     if (filter.isprofane(lowercaseWord)) {
+      console.log(`Word ${lowercaseWord} is profane.`);
       return response.status(400).send({ message: "Word is not allowed" });
     }
     // Verify if the word has already been submitted by this uuid
     const memberExists = await redisClient.sismember(uuid, lowercaseWord);
+    console.log(
+      `Checking if word ${lowercaseWord} has already been submitted by uuid ${uuid}: ${memberExists}`
+    );
     if (memberExists) {
       response.status(200).send({
         message: "This word has already been submitted by this user.",
@@ -40,17 +48,30 @@ router.post("/", async (request, response) => {
     }
     // Add the word to the set for this uuid
     await redisClient.sadd(uuid, lowercaseWord);
+    console.log(`Added word ${lowercaseWord} to set for uuid ${uuid}`);
     // Check if the word exists in the leaderboard
     const wordExists = await redisClient.hexists("leaderboard", lowercaseWord);
+    console.log(
+      `Checking if word ${lowercaseWord} exists in the leaderboard: ${wordExists}`
+    );
     if (wordExists) {
       // Increment the word count in the leaderboard hash
+      console.log(
+        `Incrementing word count for ${lowercaseWord} in the leaderboard`
+      );
     } else {
       // Set the word count in the leaderboard hash to 1
       await redisClient.hset("leaderboard", { [lowercaseWord]: 1 });
+      console.log(
+        `Setting word count for ${lowercaseWord} in the leaderboard to 1`
+      );
     }
-
+    console.log(
+      `Successfully processed word ${lowercaseWord} for uuid ${uuid}`
+    );
     return response.status(201).send({ word, uuid });
   } catch (error) {
+    console.log("Error processing request:", error.message);
     response.status(500).send({ message: error.message });
   }
 });

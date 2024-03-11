@@ -1,8 +1,8 @@
 Major steps to release:
-Find a word blacklist library and use it to filter for hash addition
+Get it working at spreadthemessage.strangestloop.io
+Let friends test the app
 Clean up the codebase
-Add words to leaderboard on download
-Deploy the app
+
 
 Nice to have:
 Improve look of downloaded GIF
@@ -16,6 +16,8 @@ Get set up with vercel
 Disable chart view button during download
 Use token instead of ip address to track user
 Understand the process to deploy through github + vercel to my website
+Find a word blacklist library and use it to filter for hash addition
+Add words to leaderboard on download
 
 ~*~*~*~*~
 

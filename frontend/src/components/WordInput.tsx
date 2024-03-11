@@ -54,10 +54,20 @@ const WordInput: FC<WordInputProps> = ({
   };
 
   const isValidInput = (input: string) => {
-    const hasValidChars = /^[A-Za-z0-9@#]*$/.test(input);
+    const hasValidChars = /^[A-Za-z0-9@#'.?!]*$/.test(input);
     const atCount = (input.match(/@/g) || []).length;
     const hashCount = (input.match(/#/g) || []).length;
-    return hasValidChars && atCount <= 1 && hashCount <= 1;
+    const apostropheCount = (input.match(/'/g) || []).length;
+    const periodCount = (input.match(/\./g) || []).length;
+    const questionMarkCount = (input.match(/\?/g) || []).length;
+    const exclamationMarkCount = (input.match(/!/g) || []).length;
+    return (
+      hasValidChars &&
+      atCount <= 1 &&
+      hashCount <= 1 &&
+      apostropheCount <= 1 &&
+      periodCount + questionMarkCount + exclamationMarkCount <= 1
+    );
   };
 
   return (

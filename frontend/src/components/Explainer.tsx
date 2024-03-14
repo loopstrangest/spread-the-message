@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, IconButton, Typography, Box, Link } from "@mui/material";
+import { Modal, IconButton, Typography, Box } from "@mui/material";
 import { QuestionMark, Twitter, Home, Mail, Close } from "@mui/icons-material";
 import bmcImage from "../images/bmc.png";
 

@@ -18,7 +18,7 @@ const Explainer: React.FC = () => {
         style={{
           color: "white",
           opacity: 0.5,
-          position: "fixed",
+          position: "absolute",
           top: 0,
           right: 8,
         }}

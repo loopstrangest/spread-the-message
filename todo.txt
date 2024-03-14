@@ -2,6 +2,8 @@ Major steps to release:
 Improve text font size function
 Update edit view to show all characters
 Horizontal margins for text edit boxes
+Click on live GIF to go to Edit View
+Make chart button disable look not-buggy
 words route: "vercel client-side routing"
 Update readme
 Add social media assets

@@ -1,6 +1,10 @@
 Major steps to release:
 Improve text font size function
-Add a working route for /words in the URL.
+Update edit view to show all characters
+Horizontal margins for text edit boxes
+words route: "vercel client-side routing"
+Update readme
+Add social media assets
 Let friends test the app
 Clean up the codebase
 
@@ -19,7 +23,7 @@ Get it working at spreadthemessage.strangestloop.io
 Improve mobile view
 Fix leaderboard increment bug
 Add an explainer + external links
-
+Add a working route for /words in the URL.
 
 
 ~*~*~*~*~

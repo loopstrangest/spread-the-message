@@ -5,6 +5,7 @@ Horizontal margins for text edit boxes
 Click on live GIF to go to Edit View
 Make chart button disable look not-buggy
 words route: "vercel client-side routing"
+Configure /words 404 page
 Update readme
 Add social media assets
 Let friends test the app

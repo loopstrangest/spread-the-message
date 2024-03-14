@@ -1,12 +1,10 @@
 Major steps to release:
-Get it working at spreadthemessage.strangestloop.io
+Improve mobile view
+Fix leaderboard increment bug
+Improve text font size function
+Add an explainer + external links
 Let friends test the app
 Clean up the codebase
-
-
-Nice to have:
-Improve look of downloaded GIF
-Understand git deployment commands from the terminal
 
 Finished steps:
 Display leaderboard data in Chart.tsx
@@ -18,6 +16,10 @@ Use token instead of ip address to track user
 Understand the process to deploy through github + vercel to my website
 Find a word blacklist library and use it to filter for hash addition
 Add words to leaderboard on download
+Understand git deployment commands from the terminal
+Get it working at spreadthemessage.strangestloop.io
+
+
 
 ~*~*~*~*~
 
@@ -28,6 +30,10 @@ bg2: #5cecffff
 text: #00f0ffff
 bg1: #fe4a49ff
 bg2: #ff00f5ff
+
+text: #FF1493
+bg1: #FFF0F5
+bg2: #DC143C
 
 DONE:
 Format word data model to include the user's IP address.

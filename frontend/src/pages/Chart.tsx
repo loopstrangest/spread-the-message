@@ -70,7 +70,8 @@ const ShowWords = () => {
             }}
             style={{
               parent: {
-                width: "800px",
+                width: "95%",
+                maxWidth: "800px",
                 border: "1px solid #ccc", // Kept border around the chart
                 borderRadius: "5px", // Optional: if you want rounded corners
               },

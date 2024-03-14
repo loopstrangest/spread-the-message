@@ -66,7 +66,7 @@ const WordInput: FC<WordInputProps> = ({
       atCount <= 1 &&
       hashCount <= 1 &&
       apostropheCount <= 1 &&
-      periodCount + questionMarkCount + exclamationMarkCount <= 1
+      periodCount + questionMarkCount + exclamationMarkCount <= 3
     );
   };
 

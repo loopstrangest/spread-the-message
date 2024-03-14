@@ -59,6 +59,7 @@ router.post("/", async (request, response) => {
       console.log(
         `Incrementing word count for ${lowercaseWord} in the leaderboard`
       );
+      await redisClient.hincrby("leaderboard", lowercaseWord, 1);
     } else {
       // Set the word count in the leaderboard hash to 1
       await redisClient.hset("leaderboard", { [lowercaseWord]: 1 });

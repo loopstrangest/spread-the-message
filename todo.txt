@@ -1,8 +1,6 @@
 Major steps to release:
-Improve mobile view
-Fix leaderboard increment bug
 Improve text font size function
-Add an explainer + external links
+Add a working route for /words in the URL.
 Let friends test the app
 Clean up the codebase
 
@@ -18,6 +16,9 @@ Find a word blacklist library and use it to filter for hash addition
 Add words to leaderboard on download
 Understand git deployment commands from the terminal
 Get it working at spreadthemessage.strangestloop.io
+Improve mobile view
+Fix leaderboard increment bug
+Add an explainer + external links
 
 
 

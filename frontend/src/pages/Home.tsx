@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import WordInput from "../components/WordInput";
 import WordGIF from "../components/WordGIF";
+import Explainer from "../components/Explainer";
 import AddWordsButton from "../components/ToggleGIFButton";
 import axios from "axios";
 import { Box, Button, Container, Typography } from "@mui/material";
@@ -134,6 +135,7 @@ const Home = () => {
         minHeight="100vh"
         gap={2}
       >
+        <Explainer />
         {showGIF ? (
           <WordGIF
             words={inputWords}
@@ -211,7 +213,7 @@ const Home = () => {
             <Typography>Effect</Typography>
           </StyledButton>
         </Box>
-        <Box sx={{ maxWidth: "375px", margin: 0 }}>
+        <Box sx={{ maxWidth: "375px", margin: -1 }}>
           {activePicker === "font" && (
             <Box
               sx={{

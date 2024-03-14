@@ -1,6 +1,6 @@
 Major steps to release:
-Add a working route for /words in the URL
-Add social media assets
+Improve text font size function
+Add a working route for /words in the URL.
 Let friends test the app
 Clean up the codebase
 
@@ -19,6 +19,8 @@ Get it working at spreadthemessage.strangestloop.io
 Improve mobile view
 Fix leaderboard increment bug
 Add an explainer + external links
+
+
 
 ~*~*~*~*~
 

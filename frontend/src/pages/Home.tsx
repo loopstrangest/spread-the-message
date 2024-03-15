@@ -123,7 +123,7 @@ const Home = () => {
   };
 
   return (
-    <Container maxWidth="sm">
+    <Container maxWidth="lg">
       {showChart ? (
         <Chart setShowChart={setShowChart} />
       ) : (

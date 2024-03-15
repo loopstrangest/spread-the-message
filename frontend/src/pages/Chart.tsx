@@ -67,7 +67,6 @@ const Chart = ({ setShowChart }: { setShowChart: (show: boolean) => void }) => {
             }}
             style={{
               parent: {
-                width: "115%",
                 maxWidth: "800px",
                 border: "1px solid #ccc", // Kept border around the chart
                 borderRadius: "5px", // Optional: if you want rounded corners

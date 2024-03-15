@@ -147,6 +147,9 @@ const Home = () => {
             isDownloading={isDownloading}
             setIsDownloading={setIsDownloading}
             handleAddWord={handleAddWord}
+            handleToggle={() => {
+              setShowGIF(!showGIF);
+            }}
           />
         ) : (
           <WordInput
@@ -348,7 +351,14 @@ const Home = () => {
         </Box>
         <Button
           variant="contained"
-          sx={{ outline: "1px solid white" }}
+          sx={{
+            outline: "1px solid white",
+            backgroundColor: isDownloading ? "gray" : "", // Add this line
+            "&:disabled": {
+              backgroundColor: "gray", // Ensure it stays gray when disabled
+              color: "white",
+            },
+          }}
           onClick={() => navigate("/words")}
           disabled={isDownloading}
         >

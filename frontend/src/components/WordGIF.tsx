@@ -23,6 +23,7 @@ interface WordGIFProps {
   isDownloading?: boolean;
   setIsDownloading: (isDownloading: boolean) => void;
   handleAddWord: () => void;
+  handleToggle: () => void;
 }
 
 interface GifShotResult {
@@ -42,6 +43,7 @@ const WordGIF: React.FC<WordGIFProps> = ({
   isDownloading,
   setIsDownloading,
   handleAddWord,
+  handleToggle,
 }) => {
   const frameRate = 60;
   const captureLength = ANIMATION_DURATION_MS;
@@ -117,7 +119,11 @@ const WordGIF: React.FC<WordGIFProps> = ({
   };
   return (
     <>
-      <Box className="word-container" sx={{ border: "8px solid gold" }}>
+      <Box
+        className="word-container"
+        sx={{ border: "8px solid gold", cursor: "pointer" }}
+        onClick={handleToggle}
+      >
         <Box
           id="gifContainer"
           sx={{

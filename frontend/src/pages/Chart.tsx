@@ -2,21 +2,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Loader from "../components/Loader";
 import { Box, Button, Container, Typography } from "@mui/material"; // Import MUI components
-import { useNavigate } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import { VictoryBar, VictoryChart, VictoryAxis } from "victory";
 
-interface WordCount {
+interface ChartProps {
   word: string;
   count: number;
 }
 
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
 
-const ShowWords = () => {
-  const [wordCounts, setWordCounts] = useState<WordCount[]>([]);
+const Chart = ({ setShowChart }: { setShowChart: (show: boolean) => void }) => {
+  const [wordCounts, setWordCounts] = useState<ChartProps[]>([]);
   const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -24,12 +22,12 @@ const ShowWords = () => {
       .get(`${BACKEND_URL}/words`)
       .then((response) => {
         if (response.data && response.data.data) {
-          const countsArray: WordCount[] = response.data.data
+          const countsArray: ChartProps[] = response.data.data
             .map(({ word, count }: { word: string; count: number }) => ({
               word,
               count,
             }))
-            .sort((a: WordCount, b: WordCount) => b.count - a.count)
+            .sort((a: ChartProps, b: ChartProps) => b.count - a.count)
             .slice(0, 10); // Limiting the array to the top 10 entries
           setWordCounts(countsArray);
         }
@@ -112,7 +110,9 @@ const ShowWords = () => {
         <Button
           variant="contained"
           sx={{ outline: "1px solid white" }}
-          onClick={() => navigate("/")}
+          onClick={() => {
+            setShowChart(false);
+          }}
         >
           <HomeIcon />
         </Button>
@@ -121,4 +121,4 @@ const ShowWords = () => {
   );
 };
 
-export default ShowWords;
+export default Chart;

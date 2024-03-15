@@ -1,8 +1,4 @@
 Major steps to release:
-words route: "vercel client-side routing"
-    https://vitejs.dev/guide/build.html#multi-page-app
-    https://github.com/orgs/vercel/discussions/149#discussioncomment-2392167
-Configure /words 404 page
 Put "Download" and "Edit Text" on one row
 Add social media assets
 Let friends test the app
@@ -28,7 +24,7 @@ Update readme
 Update edit view to show all characters
 Click on live GIF to go to Edit View
 Make chart button disable look not-buggy
-
+Remove /words URL route
 
 ~*~*~*~*~
 
@@ -43,6 +39,10 @@ bg2: #ff00f5ff
 text: #FF1493
 bg1: #FFF0F5
 bg2: #DC143C
+
+"vercel client-side routing"
+    https://vitejs.dev/guide/build.html#multi-page-app
+    https://github.com/orgs/vercel/discussions/149#discussioncomment-2392167
 
 DONE:
 Format word data model to include the user's IP address.

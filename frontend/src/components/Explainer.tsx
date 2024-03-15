@@ -91,8 +91,8 @@ const Explainer: React.FC = () => {
             "Download" to download the GIF.
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Click "Edit Text" to move to Edit View (dashed border), where you
-            can click each of the three words to change them.
+            Click the GIF or "Edit Text" to move to Edit View (dashed border),
+            where you can click each of the three words to change them.
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             In both views, you can adjust the font, colors, and text effect. The

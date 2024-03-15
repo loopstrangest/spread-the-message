@@ -188,6 +188,7 @@ const WordGIF: React.FC<WordGIFProps> = ({
               createGIF(frames);
             }}
             disabled={isDownloading}
+            sx={{ width: "92px" }}
           >
             {isDownloading ? (
               <CircularProgress size={24} />
@@ -202,6 +203,7 @@ const WordGIF: React.FC<WordGIFProps> = ({
             handleToggle={() => {
               setShowGIF(!showGIF);
             }}
+            isDownloading={isDownloading}
           />
         </Box>
       </Box>

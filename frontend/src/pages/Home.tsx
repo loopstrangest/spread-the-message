@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import WordInput from "../components/WordInput";
 import WordGIF from "../components/WordGIF";
 import Explainer from "../components/Explainer";
-import AddWordsButton from "../components/ToggleGIFButton";
 import Chart from "./Chart";
 import axios from "axios";
 import { Box, Button, Container, Typography } from "@mui/material";
@@ -146,6 +145,8 @@ const Home = () => {
               backgroundColors={[backgroundColor, backgroundColor2]}
               gradientDirection={gradientDirection}
               isDownloading={isDownloading}
+              showGIF={showGIF}
+              setShowGIF={setShowGIF}
               setIsDownloading={setIsDownloading}
               handleAddWord={handleAddWord}
               handleToggle={() => {
@@ -166,15 +167,10 @@ const Home = () => {
               textColor={textColor.toString()}
               backgroundColors={[backgroundColor, backgroundColor2]}
               gradientDirection={gradientDirection}
+              showGIF={showGIF}
+              setShowGIF={setShowGIF}
             />
           )}
-
-          <AddWordsButton
-            showGIF={showGIF}
-            handleToggle={() => {
-              setShowGIF(!showGIF);
-            }}
-          />
 
           <Box sx={{ display: "flex", gap: 1 }}>
             <StyledButton

@@ -52,8 +52,7 @@ const Chart = ({ setShowChart }: { setShowChart: (show: boolean) => void }) => {
         minHeight="100vh"
         gap={2} // Added gap property to give more vertical space between elements
       >
-        <Typography variant="h4">Popular Words</Typography>
-
+        <Typography variant="h5">Popular Words</Typography>
         {loading ? (
           <Loader />
         ) : (
@@ -68,7 +67,7 @@ const Chart = ({ setShowChart }: { setShowChart: (show: boolean) => void }) => {
             }}
             style={{
               parent: {
-                width: "95%",
+                width: "115%",
                 maxWidth: "800px",
                 border: "1px solid #ccc", // Kept border around the chart
                 borderRadius: "5px", // Optional: if you want rounded corners

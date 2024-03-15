@@ -4,6 +4,7 @@ import { toPng } from "html-to-image";
 import gifshot from "gifshot";
 import "../styles.css";
 import StyledButton from "./StyledButton";
+import ToggleGIFButton from "../components/ToggleGIFButton";
 import { calculateFontSize } from "../utilities/calculateFontSize";
 import { Check } from "@mui/icons-material";
 import {
@@ -21,6 +22,8 @@ interface WordGIFProps {
   gradientDirection: string;
   animation?: string;
   isDownloading?: boolean;
+  showGIF: boolean;
+  setShowGIF: (showGIF: boolean) => void;
   setIsDownloading: (isDownloading: boolean) => void;
   handleAddWord: () => void;
   handleToggle: () => void;
@@ -41,6 +44,8 @@ const WordGIF: React.FC<WordGIFProps> = ({
   backgroundColors,
   gradientDirection,
   isDownloading,
+  showGIF,
+  setShowGIF,
   setIsDownloading,
   handleAddWord,
   handleToggle,
@@ -119,68 +124,87 @@ const WordGIF: React.FC<WordGIFProps> = ({
   };
   return (
     <>
-      <Box
-        className="word-container"
-        sx={{ border: "8px solid gold", cursor: "pointer" }}
-        onClick={handleToggle}
-      >
+      <Box className="word-container-wrapper">
         <Box
-          id="gifContainer"
+          className="word-container"
+          sx={{ border: "8px solid gold", cursor: "pointer" }}
+          onClick={handleToggle}
+        >
+          <Box
+            id="gifContainer"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              gap: 1,
+              paddingY: 4,
+              width: `${GIF_SIZE}px`,
+              height: `${GIF_SIZE}px`,
+              aspectRatio: "1 / 1",
+              alignItems: "center",
+              background:
+                gradientDirection === "toCenter"
+                  ? `radial-gradient(circle at center, ${backgroundColors[1]}, ${backgroundColors[0]})`
+                  : `radial-gradient(circle at center, ${backgroundColors[0]}, ${backgroundColors[1]})`,
+            }}
+          >
+            {words.map((word, index) => (
+              <Typography
+                key={index}
+                className="animated-text"
+                sx={{
+                  textAlign: "center",
+                  fontSize: fontSize,
+                  fontFamily: `${font}, sans-serif`,
+                  width: "95%",
+                  color: `${textColor}`,
+                  userSelect: "none",
+                  animation: `${animation} ${ANIMATION_DURATION_S}s infinite`,
+                }}
+              >
+                {word}
+              </Typography>
+            ))}
+          </Box>
+        </Box>
+        <Box
           sx={{
             display: "flex",
-            flexDirection: "column",
+            margin: "auto",
             justifyContent: "space-around",
-            gap: 1,
-            paddingY: 4,
-            width: `${GIF_SIZE}px`,
-            height: `${GIF_SIZE}px`,
-            aspectRatio: "1 / 1",
-            alignItems: "center",
-            background:
-              gradientDirection === "toCenter"
-                ? `radial-gradient(circle at center, ${backgroundColors[1]}, ${backgroundColors[0]})`
-                : `radial-gradient(circle at center, ${backgroundColors[0]}, ${backgroundColors[1]})`,
+            width: "312px",
           }}
         >
-          {words.map((word, index) => (
-            <Typography
-              key={index}
-              className="animated-text"
-              sx={{
-                textAlign: "center",
-                fontSize: fontSize,
-                fontFamily: `${font}, sans-serif`,
-                width: "95%",
-                color: `${textColor}`,
-                userSelect: "none",
-                animation: `${animation} ${ANIMATION_DURATION_S}s infinite`,
-              }}
-            >
-              {word}
-            </Typography>
-          ))}
+          <StyledButton
+            variant="contained"
+            onClick={async () => {
+              handleAddWord();
+              const frames =
+                (await captureFrames(
+                  "gifContainer",
+                  captureLength,
+                  frameRate
+                )) || [];
+              createGIF(frames);
+            }}
+            disabled={isDownloading}
+          >
+            {isDownloading ? (
+              <CircularProgress size={24} />
+            ) : downloadSuccess ? (
+              <Check style={{ color: "green" }} />
+            ) : (
+              <Typography>Download</Typography>
+            )}
+          </StyledButton>
+          <ToggleGIFButton
+            showGIF={showGIF}
+            handleToggle={() => {
+              setShowGIF(!showGIF);
+            }}
+          />
         </Box>
       </Box>
-      {/* <Box id="gifDisplayContainer" sx={{ display: "none" }}></Box>*/}
-      <StyledButton
-        variant="contained"
-        onClick={async () => {
-          handleAddWord();
-          const frames =
-            (await captureFrames("gifContainer", captureLength, frameRate)) ||
-            [];
-          createGIF(frames);
-        }}
-        disabled={isDownloading}
-      >
-        {isDownloading ? (
-          <CircularProgress size={24} />
-        ) : downloadSuccess ? (
-          <Check style={{ color: "green" }} />
-        ) : (
-          <Typography>Download</Typography>
-        )}
-      </StyledButton>
     </>
   );
 };

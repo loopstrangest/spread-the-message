@@ -10,6 +10,10 @@
   }
 }
 
+.word-container-wrapper {
+  padding-bottom: 0%; /* Adjust this value as needed */
+}
+
 .word-container {
   transform: scale(
     0.75

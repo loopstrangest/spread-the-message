@@ -1,5 +1,4 @@
 Major steps to release:
-Put "Download" and "Edit Text" on one row
 Add social media assets
 Let friends test the app
 Clean up the codebase
@@ -25,6 +24,7 @@ Update edit view to show all characters
 Click on live GIF to go to Edit View
 Make chart button disable look not-buggy
 Remove /words URL route
+Put "Download" and "Edit Text" on one row
 
 ~*~*~*~*~
 

@@ -2,12 +2,12 @@ import React from "react";
 import { Typography } from "@mui/material";
 import StyledButton from "./StyledButton";
 
-interface AddWordButtonProps {
+interface ToggleGIFButtonProps {
   handleToggle: () => void;
   showGIF: boolean;
 }
 
-const AddWordButton: React.FC<AddWordButtonProps> = ({
+const ToggleGIFButton: React.FC<ToggleGIFButtonProps> = ({
   showGIF,
   handleToggle,
 }) => {
@@ -15,10 +15,9 @@ const AddWordButton: React.FC<AddWordButtonProps> = ({
     <StyledButton variant="contained" onClick={() => handleToggle()}>
       <Typography
         style={{
-          paddingTop: "4px",
           display: "flex",
           alignItems: "center",
-          height: "100%",
+          height: "24px",
         }}
       >
         {showGIF ? "Edit Text" : "Show GIF"}
@@ -27,4 +26,4 @@ const AddWordButton: React.FC<AddWordButtonProps> = ({
   );
 };
 
-export default AddWordButton;
+export default ToggleGIFButton;

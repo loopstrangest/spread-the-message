@@ -1,4 +1,5 @@
 import { FC, useState, useEffect } from "react";
+import ToggleGIFButton from "./ToggleGIFButton";
 import { Box, TextField } from "@mui/material";
 import { calculateFontSize } from "../utilities/calculateFontSize";
 import { GIF_SIZE } from "../constants";
@@ -10,6 +11,8 @@ interface WordInputProps {
   textColor: string;
   backgroundColors: string[];
   gradientDirection: string;
+  showGIF: boolean;
+  setShowGIF: (showGIF: boolean) => void;
 }
 
 const WordInput: FC<WordInputProps> = ({
@@ -19,6 +22,8 @@ const WordInput: FC<WordInputProps> = ({
   textColor,
   backgroundColors,
   gradientDirection,
+  showGIF,
+  setShowGIF,
 }) => {
   // State hooks for each TextField
   const [inputValue1, setInputValue1] = useState<string>("");
@@ -71,48 +76,69 @@ const WordInput: FC<WordInputProps> = ({
   };
 
   return (
-    <Box className="word-container" sx={{ border: "8px dashed gold" }}>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-around",
-          gap: 1,
-          paddingY: 4,
-          width: `${GIF_SIZE}px`,
-          height: `${GIF_SIZE}px`,
-          aspectRatio: "1 / 1",
-          alignItems: "center",
-          background:
-            gradientDirection === "toCenter"
-              ? `radial-gradient(circle at center, ${backgroundColors[1]}, ${backgroundColors[0]})`
-              : `radial-gradient(circle at center, ${backgroundColors[0]}, ${backgroundColors[1]})`,
-        }}
-      >
-        {[setInputValue1, setInputValue2, setInputValue3].map(
-          (setter, index) => (
-            <TextField
-              key={`wordInput${index + 1}`}
-              variant="standard"
-              value={[inputValue1, inputValue2, inputValue3][index]}
-              onChange={(e) => handleInputChange(e.target.value, setter, index)}
-              onBlur={updateLocalStorage}
-              InputProps={{ disableUnderline: true }}
-              inputProps={{
-                style: {
-                  margin: "auto",
-                  textAlign: "center",
-                  fontSize: fontSize,
-                  fontFamily: `${font}, sans-serif`,
-                  width: "95%",
-                  color: `${textColor}`,
-                },
-              }}
-            />
-          )
-        )}
+    <>
+      <Box className="word-container-wrapper">
+        <Box className="word-container" sx={{ border: "8px dashed gold" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around",
+              gap: 1,
+              paddingY: 4,
+              width: `${GIF_SIZE}px`,
+              height: `${GIF_SIZE}px`,
+              aspectRatio: "1 / 1",
+              alignItems: "center",
+              background:
+                gradientDirection === "toCenter"
+                  ? `radial-gradient(circle at center, ${backgroundColors[1]}, ${backgroundColors[0]})`
+                  : `radial-gradient(circle at center, ${backgroundColors[0]}, ${backgroundColors[1]})`,
+            }}
+          >
+            {[setInputValue1, setInputValue2, setInputValue3].map(
+              (setter, index) => (
+                <TextField
+                  key={`wordInput${index + 1}`}
+                  variant="standard"
+                  value={[inputValue1, inputValue2, inputValue3][index]}
+                  onChange={(e) =>
+                    handleInputChange(e.target.value, setter, index)
+                  }
+                  onBlur={updateLocalStorage}
+                  InputProps={{ disableUnderline: true }}
+                  inputProps={{
+                    style: {
+                      margin: "auto",
+                      textAlign: "center",
+                      fontSize: fontSize,
+                      fontFamily: `${font}, sans-serif`,
+                      width: "95%",
+                      color: `${textColor}`,
+                    },
+                  }}
+                />
+              )
+            )}
+          </Box>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            margin: "auto",
+            justifyContent: "space-around",
+            width: "312px",
+          }}
+        >
+          <ToggleGIFButton
+            showGIF={showGIF}
+            handleToggle={() => {
+              setShowGIF(!showGIF);
+            }}
+          />
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 };
 

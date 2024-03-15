@@ -16,7 +16,14 @@ const Menu: React.FC<MenuProps> = ({
   handleDownload,
 }) => {
   return (
-    <Box sx={{ display: "flex", justifyContent: "center", gap: 2 }}>
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        gap: 2,
+        border: "5px solid white",
+      }}
+    >
       {showGIF ? (
         <>
           <StyledButton onClick={handleDownload} disabled={isDownloading}>

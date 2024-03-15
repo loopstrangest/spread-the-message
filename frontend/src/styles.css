@@ -24,7 +24,3 @@ body {
   color: white;
   font-family: "Roboto", sans-serif;
 }
-
-.MuiTextField-root {
-  width: 95% !important;
-}

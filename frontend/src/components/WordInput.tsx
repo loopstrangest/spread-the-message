@@ -69,7 +69,7 @@ const WordInput: FC<WordInputProps> = ({
     const exclamationMarkCount = (input.match(/!/g) || []).length;
     return (
       hasValidChars &&
-      spaceCount <= 1 && // Ensure only one space is allowed
+      spaceCount <= 1 &&
       atCount <= 1 &&
       hashCount <= 1 &&
       apostropheCount <= 1 &&

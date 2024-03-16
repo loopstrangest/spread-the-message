@@ -111,14 +111,17 @@ const Home = () => {
 
   const handleAddWord = () => {
     const uuid = localStorage.getItem("stm_userToken");
-    inputWords.forEach((word) => {
-      if (word !== "") {
-        const lowercaseWord = word.toLowerCase();
-        axios.post(`${BACKEND_URL}/words`, {
-          word: lowercaseWord,
-          uuid: uuid,
-        });
-      }
+    inputWords.forEach((line) => {
+      const words = line.split(" ").filter((word) => word !== "");
+      words.forEach((word) => {
+        if (word !== "") {
+          const lowercaseWord = word.toLowerCase();
+          axios.post(`${BACKEND_URL}/words`, {
+            word: lowercaseWord,
+            uuid: uuid,
+          });
+        }
+      });
     });
   };
 

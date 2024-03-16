@@ -59,11 +59,12 @@ const WordInput: FC<WordInputProps> = ({
   };
 
   const isValidInput = (input: string) => {
-    const hasValidChars = /^[A-Za-z0-9@#'.?! ]*$/.test(input); // Added a space inside the brackets
+    const hasValidChars = /^[A-Za-z0-9@#'.?! \u2018\u2019\u02BC]*$/.test(input);
     const spaceCount = (input.match(/ /g) || []).length;
     const atCount = (input.match(/@/g) || []).length;
     const hashCount = (input.match(/#/g) || []).length;
-    const apostropheCount = (input.match(/'/g) || []).length;
+    const apostropheCount = (input.match(/['\u2018\u2019\u02BC]/g) || [])
+      .length;
     const periodCount = (input.match(/\./g) || []).length;
     const questionMarkCount = (input.match(/\?/g) || []).length;
     const exclamationMarkCount = (input.match(/!/g) || []).length;
@@ -72,7 +73,7 @@ const WordInput: FC<WordInputProps> = ({
       spaceCount <= 1 &&
       atCount <= 1 &&
       hashCount <= 1 &&
-      apostropheCount <= 1 &&
+      apostropheCount <= 2 &&
       periodCount + questionMarkCount + exclamationMarkCount <= 3
     );
   };
